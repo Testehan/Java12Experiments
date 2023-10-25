@@ -47,6 +47,3 @@ JDK 12 new features
       !!!   The two statements, break (with or without a label) and yield, facilitate easy disambiguation between
             switch statements and switch expressions: a switch statement but not a switch expression can be the target
             of a break statement; and a switch expression but not a switch statement can be the target of a yield statement.
-
-
-TODO Create git repo
