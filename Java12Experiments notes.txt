@@ -1,0 +1,52 @@
+Check here all new features of Java 12 : https://openjdk.org/projects/jdk/12/
+
+
+
+JDK 12 new features
+
+    1. JEP 325: Switch Expressions (Preview)
+        Motivation
+            Extend the switch statement so that it can be used as either a statement or an expression, and that both
+            forms can use either a "traditional" or "simplified" scoping and control flow behavior.
+
+            several irregularities of the existing switch statement -- which have long been an irritation to users --
+            become impediments. These include the default control flow behavior (fall through) of switch blocks, the
+            default scoping of switch blocks (the block is treated as one single scope) and that switch works only as a
+            statement, even though it is commonly more natural to express multi-way conditionals as expressions.
+
+            For example, in the following code, the many break statements make it unnecessarily verbose, and this
+            visual noise often masks hard to debug errors, where missing break statements mean that accidental
+            fall-through occurs.
+                switch (day) {
+                    case MONDAY:
+                    case FRIDAY:
+                    case SUNDAY:
+                        System.out.println(6);
+                        break;
+                    case TUESDAY:
+                        System.out.println(7);
+                        break;
+                    case THURSDAY:
+                    case SATURDAY:
+                        System.out.println(8);
+                        break;
+                    case WEDNESDAY:
+                        System.out.println(9);
+                        break;
+                }
+
+            It should be possible to say that directly, using a switch expression, which is both clearer and safer:
+                int numLetters = switch (day) {
+                    case MONDAY, FRIDAY, SUNDAY -> 6;
+                    case TUESDAY                -> 7;
+                    case THURSDAY, SATURDAY     -> 8;
+                    case WEDNESDAY              -> 9;
+                };
+
+        This functionality became permanent in jdk14 with some changes:
+      !!!   The two statements, break (with or without a label) and yield, facilitate easy disambiguation between
+            switch statements and switch expressions: a switch statement but not a switch expression can be the target
+            of a break statement; and a switch expression but not a switch statement can be the target of a yield statement.
+
+
+TODO Create git repo
